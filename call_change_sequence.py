@@ -21,8 +21,6 @@ class BasicScorer(RowScorer):
             ( bells*5, ( named_rows.Queens(bells), named_rows.Kings(bells), named_rows.Tittums(bells), named_rows.Backrounds(bells) ) )
             ]
 
-        # named_rows.Tittums(bells),
-
     
     def row_to_score(self,  row ):
         for (score, changes) in self.scored_changes:
@@ -63,7 +61,7 @@ def best_sequence( bells, change_list, start_change=None, scorer=None ):
 
     current_change = start_change
     for end_change in change_list:
-        routes = change_route( current_change, end_change, score, [ start_change ], scorer)
+        routes = change_route( current_change, end_change, score, [ current_change ], scorer)
         best_route = max( routes, key=lambda x: x[0] )
         score = best_route[0]
         changes.extend( best_route[1] )
